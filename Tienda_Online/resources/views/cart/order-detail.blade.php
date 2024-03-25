@@ -8,12 +8,12 @@
         <div class="col-md-6">
             <h3>Datos del usuario</h3>
             <table class="table table-striped table-hover table-bordered">
-                <tr><td>Nombre:</td><td>{{Auth::user()->name . " " . Auth::user()->last_name}}</td></tr>
+                <tr><td>Nombre:</td><td>{{Auth::user()->name . " " . Auth::user()->lastname}}</td></tr>
                 <tr><td>Usuario:</td><td>{{Auth::user()->user}}</td></tr>
                 <tr><td>Correo:</td><td>{{Auth::user()->email}}</td></tr>
-                <tr><td>Dirección</td><td>{{Auth::user()->address}}</td></tr>
-                <tr><td>Código Postal:</td><td>{{Auth::user()->postal}}</td></tr>
-                <tr><td>Localidad:</td><td>{{Auth::user()->locality}}</td></tr>
+                <tr><td>Dirección:</td><td>{{Auth::user()->direccion }}</td></tr>
+                <tr><td>Código Postal:</td><td>{{Auth::user()->codigo_postal }}</td></tr>
+                <tr><td>Localidad:</td><td>{{Auth::user()->localidad }}</td></tr>
             </table>
         </div>
         <div class="col-md-6">
@@ -125,7 +125,16 @@
         </div>
         <a href="{{ route('cart-show') }}" class="btn btn-primary" style="font-size: large;  margin-bottom:10px">
             <i class="fa fa-chevron-circle-left fa-x2"></i> Volver al carrito</a>
-        <button class="btn btn-primary"  id="tjBtn" style="font-size: large; margin-bottom:10px"> Pagar con Tarjeta <i class="fa fa-credit-card fa-x2"></i></button>
+            
+            <form name="form" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST">
+                <input type="hidden" name="Ds_SignatureVersion" value="HMAC_SHA256_V1"/>
+                <input type="hidden" name="Ds_MerchantParameters" value="eyJEU19NRVJDSEFOVF9BTU9VTlQiOiAiMTQ1IiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiAiOTc4IiwiRFNfTUVSQ0hBTlRfTUVSQ0hBTlRDT0RFIjogIjk5OTAwODg4MSIsIkRTX01FUkNIQU5UX01FUkNIQU5UVVJMIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxOb3RpZmljYWNpb24ucGhwIiwiRFNfTUVSQ0hBTlRfT1JERVIiOiAiMTQ0NjA2ODU4MSIsIkRTX01FUkNIQU5UX1RFUk1JTkFMIjogIjEiLCJEU19NRVJDSEFOVF9UUkFOU0FDVElPTlRZUEUiOiAiMCIsIkRTX01FUkNIQU5UX1VSTEtPIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxLTy5waHAiLCJEU19NRVJDSEFOVF9VUkxPSyI6ICJodHRwOi8vd3d3LnBydWViYS5jb20vdXJsT0sucGhwIn0="/>
+                <input type="hidden" name="Ds_Signature" value="PqV2+SF6asdasMjXasKJRTh3UIYya1hmU/igHkzhC+R="/>
+                <button class="btn btn-primary" id="tjBtn" style="font-size: large; margin-bottom:10px">Pagar con Tarjeta <i class="fa fa-credit-card fa-x2"></i></button>
+            </form>
+            
+          
+            
         <a href="{{ URL('/pdf') }}" class="btn btn-primary" style="font-size: larger; margin-bottom:10px">
             Descargar comprobante <i class="fa fa-download fa-x2"></i></a>
     </div>

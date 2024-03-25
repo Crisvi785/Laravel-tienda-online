@@ -39,9 +39,13 @@
                         {{--Falta implementar el numero de elementos--}}
                         <td>{{ number_format($item->price * $item->quantity,2) }}</td>
                         <td>
-                             <a href="{{ route('cart-delete', $item->slug) }}" class="btn btn-danger"> 
-                                <i class="fa fa-remove"></i>
-                            </a>
+                            <form action="{{ route('cart-delete', $item->slug) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

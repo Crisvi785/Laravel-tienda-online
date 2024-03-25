@@ -6,8 +6,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\ProductShopController;
+use App\Http\Controllers\RedsysController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Models\Products;
@@ -62,7 +64,7 @@ Route::get('/terms', [InfoController::class, 'getTerms'])->name('terms');
 Route::get('cart/add/{slug}', [CartController:: class, 'add'])->name('cart-add');
 Route::get('cart/show', [CartController::class, 'show'])->name('cart-show');
 Route::post('cart/show', [CartController::class, 'trash'])->name('cart-trash');
-Route::post('cart/delete/{slug}',[CartController::class,'delete'])->name('cart-delete');
+Route::delete('cart/delete/{slug}', [CartController::class, 'delete'])->name('cart-delete');
 
 Route::post('cart/update/{slug}', [CartController::class, 'update'])->name('cart-update');
 Route::get('/store',[StoreController::class, 'index'])->name('store');
@@ -73,6 +75,9 @@ Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->name( 'cart
 
 //Dirección de envío
 Route::post('/guardar-datos-envio', [EnvioController::class, 'guardarDatosEnvio'])->name('guardar_datos_envio');
+
+
+//Pago
 
 
 

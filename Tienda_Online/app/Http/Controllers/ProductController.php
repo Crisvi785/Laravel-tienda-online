@@ -51,7 +51,7 @@ class ProductController extends Controller
             $product->status = '0';
             $product->name = $request->input('name');
             $product->category_id = $request->input('category');
-            $product->image = $request->input('name') . 'image.png';
+            $product->image ='image.png';
             $product->price = $request->input('price');
             $product->in_discount = $request->input('indiscount');
             $product->discount = $request->input('discount');
