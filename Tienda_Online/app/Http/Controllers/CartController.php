@@ -6,7 +6,7 @@ use App\Http\Models\Cart;
 use App\CartItem;
 use App\Http\Models\Products;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Session;
+use Dompdf\Dompdf; // Importa la clase Dompdf
 
 use App\Product;
 use App\Http\Requests;
@@ -17,189 +17,221 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
 
+    // Constructor para inicializar el carrito de la sesión y el costo de envío
     public function __construct()
     {
-        $ship = 15;
+        $ship = 15; // Costo de envío predeterminado
         if (!session()->has('cart')) {
-            session()->put('cart', []);
+            session()->put('cart', []); // Inicializa el carrito de la sesión si no existe
         }
         if (!session()->has('shipment')) {
-            session()->put('shipment', $ship);
+            session()->put('shipment', $ship); // Establece el costo de envío en la sesión si no está definido
         }
     }
-    // Mostrar detalles del producto
+
+    // Método para mostrar los detalles del carrito
     public function show()
     {
-        $cart = session()->get('cart');
-        $total = $this->total();
-        $totalqty = $this->totalqty();
-        $ship = session()->get('shipment');
-        return view('cart.cart', compact('cart', 'total', 'totalqty', 'ship'));
+        $cart = session()->get('cart'); // Obtén el carrito de la sesión
+        $total = $this->total(); // Calcula el total del carrito
+        $totalqty = $this->totalqty(); // Calcula la cantidad total de productos en el carrito
+        $ship = session()->get('shipment'); // Obtiene el costo de envío
+        return view('cart.cart', compact('cart', 'total', 'totalqty', 'ship')); // Retorna la vista con los datos del carrito
     }
     
-    // añadir al carrito
+    // Método para agregar un producto al carrito
     public function add($slug)
     {
-    $product = Products::where('slug', $slug)->firstOrFail();
-    $cart = session()->get('cart', []);
-    $product->quantity = 1; 
-    $cart[$product->slug] = $product;
-    session()->put('cart', $cart);
-    return redirect()->route('cart-show');
+        $product = Products::where('slug', $slug)->firstOrFail(); // Busca el producto por el slug
+        $cart = session()->get('cart', []); // Obtiene el carrito de la sesión
+        $product->quantity = 1; // Establece la cantidad del producto a 1
+        $cart[$product->slug] = $product; // Agrega el producto al carrito
+        session()->put('cart', $cart); // Actualiza el carrito en la sesión
+        return redirect()->route('cart-show'); // Redirecciona a la página del carrito
     }
 
-  public function delete($slug)
-{
-    $cart = session()->get('cart');
-    unset($cart[$slug]);
-    session()->put('cart', $cart);
+    // Método para eliminar un producto del carrito
+    public function delete($slug)
+    {
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+        unset($cart[$slug]); // Elimina el producto del carrito
+        session()->put('cart', $cart); // Actualiza el carrito en la sesión
+        return redirect()->route('cart-show'); // Redirecciona a la página del carrito
+    }
 
-    return redirect()->route('cart-show');
-}
+    // Método para actualizar la cantidad de un producto en el carrito
+    public function update($slug)
+    {
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+        $cart[$slug]['quantity'] = request()->input('num'); // Actualiza la cantidad del producto
+        session()->put('cart', $cart); // Actualiza el carrito en la sesión
+        return redirect()->route('cart-show'); // Redirecciona a la página del carrito
+    }
 
-public function trash()
-{
-    session()->forget('cart');
-    return redirect()->route('cart-show');
-}
-
-public function update($slug)
-{
-    $cart = session()->get('cart');
-    $cart[$slug]['quantity'] = request()->input('num');
-    session()->put('cart', $cart);
-
-    return redirect()->route('cart-show');
-}
-
-    public function total(){
-        $ship = session()->get('shippment');
-        $cart = session()->get('cart');
-        $total = 0;
-        foreach ($cart as $item){
-            $total+= $item->price * $item->quantity;
+    // Método para calcular el total del carrito
+    public function total()
+    {
+        $ship = session()->get('shippment'); // Obtiene el costo de envío
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+        $total = 0; // Inicializa el total en 0
+        foreach ($cart as $item) { // Recorre cada producto en el carrito
+            $total += $item->price * $item->quantity; // Calcula el total sumando el precio por la cantidad de cada producto
         }
-
-        return $total;
+        return $total; // Retorna el total del carrito
     }
-    public function totalqty(){
-        $cart = session()->get('cart');
-        $totalqty = 0;
-        if ($cart!= null) {
-            foreach ($cart as $item) {
-                $totalqty += $item->quantity;
+
+    // Método para calcular la cantidad total de productos en el carrito
+    public function totalqty()
+    {
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+        $totalqty = 0; // Inicializa la cantidad total en 0
+        if ($cart != null) { // Verifica si el carrito no está vacío
+            foreach ($cart as $item) { // Recorre cada producto en el carrito
+                $totalqty += $item->quantity; // Calcula la cantidad total sumando la cantidad de cada producto
             }
         }
-        return $totalqty;
+        return $totalqty; // Retorna la cantidad total de productos en el carrito
     }
+
+    // Método para mostrar el detalle del pedido
     public function orderDetail()
     {
-        if(count(session()->get('cart'))<=0) return redirect()->route('home');
-        $cart = session()->get('cart');
-        $total = $this->total();
-        $user = Auth::user();
-        $ship = session()->get('shippment');
-        $totalqty = $this->totalqty();
+        if (count(session()->get('cart')) <= 0) return redirect()->route('home'); // Redirecciona a la página de inicio si el carrito está vacío
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+        $total = $this->total(); // Calcula el total del carrito
+        $user = Auth::user(); // Obtiene el usuario autenticado
+        $ship = session()->get('shippment'); // Obtiene el costo de envío
+        $totalqty = $this->totalqty(); // Calcula la cantidad total de productos en el carrito
 
-        return view('cart.order-detail', compact('cart', 'total', 'user', 'totalqty', 'ship'));
+        return view('cart.order-detail', compact('cart', 'total', 'user', 'totalqty', 'ship')); // Retorna la vista con los detalles del pedido
     }
-    public function destroyUser($id)
-    {
-        $user = ModelsUser::findOrFail($id);
-        $user->delete();
-        $this->trash();
 
-        return redirect() ->route('home');
-    }
-    public function updateUser(Request $request)
-    {
-        $user = Auth::user();
-        $idUser = $user->id;
-        $user->name = $request['name'];
-        $user->last_name = $request['last_name'];
-        $user->address = $request['address'];
-        $user->postal =$request['postal'];
-        $user->locality = $request['locality'];
-        $user->update;
-
-        if ($user->update) {
-            $message = 'Perfil actualizado';
-        }
-        return redirect() ->route('perfil',compact('idUser'))->with(['message' => $message]);
-    }
-    public function updateShipping(Request $request)
-    {
-        $user = Auth::user();
-        $user->name2 = $request['name2'];
-        $user->last_name2 = $request['last_name2'];
-        $user->address2 = $request['address2'];
-        $user->postal2 =$request['postal2'];
-        $user->locality2 = $request['locality2'];
-        $user->update;
-
-        return redirect() ->route('order-detail');
-    }
-    public function keep()
-    {
-
-        $user = Auth::user();
-        $user->name2 = $user->name;
-        $user->last_name2 =  $user->last_name;
-        $user->address2 =  $user->address;
-        $user->postal2 = $user->postal;
-        $user->locality2 = $user->locality;
-        $user->update;
-
-        return redirect() ->route('order-detail');
-    }
+    // Método para guardar el carrito en la base de datos
     public function saveCart()
     {
         $cartIn = Cart::create([
-          'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id // Guarda el ID del usuario autenticado en la tabla Cart
         ]);
+       
 
-        $cart = session()->get('cart');
-        foreach($cart as $product){
+        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
+         // Itera sobre cada producto en el carrito y guarda los detalles en la tabla de elementos del carrito
+         foreach ($cart as $product) {
             $this->saveCartItem($product, $cartIn->id);
         }
-        return redirect()->back();
+
+        return redirect()->back(); // Redirecciona de vuelta a la página anterior
     }
+
+    /**
+     * Guarda un elemento del carrito en la base de datos.
+     *
+     * @param  mixed  $product
+     * @param  int  $cartIn_id
+     * @return void
+     */
     public function saveCartItem($product, $cartIn_id)
     {
+        // Crea un nuevo registro de elemento del carrito en la base de datos
         CartItem::create([
             'quantity' => $product->quantity,
             'product_slug' => $product->slug,
             'product_id' => $product->id,
             'cart_id' => $cartIn_id
         ]);
-
     }
+
+    /**
+     * Obtiene un carrito específico y lo establece como el carrito actual en la sesión.
+     *
+     * @param  int  $cart_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getCart($cart_id)
     {
-        $cartMe = Cart::find($cart_id);
+        $cartMe = Cart::find($cart_id); // Busca un carrito específico en la base de datos
 
+        // Verifica si el carrito no está vacío y pertenece al usuario autenticado
+        if (!count($cartMe) || $cartMe->user_id != Auth::user()->id) {
+            return redirect()->route('home')->with(['status' => "Carrito equivocado"]); // Redirecciona a la página de inicio con un mensaje de error
+        } else {
+            $this->trash(); // Vacía el carrito actual en la sesión
 
-        if(!count($cartMe) || $cartMe->user_id != Auth::user()->id ){
-            return redirect()->route('home')->with(['status' => "Carrito equivocado"]);
-        }else{
-            $this->trash();
+            // Obtiene los elementos del carrito específico desde la base de datos y los agrega al carrito en la sesión
             $cartItems = CartItem::having('cart_id', '=', $cart_id)->get();
-            foreach($cartItems as $item) {
-            $product = Products::findOrFail($item->product_id);
-            $quantity = $item->quantity;
-            $product -> quantity = $quantity;
-            $cart[$product ->slug] = $product;
-            session()->put('cart', $cart);
-        }
-            return redirect() ->route('cart-show');
+            foreach ($cartItems as $item) {
+                $product = Products::findOrFail($item->product_id);
+                $quantity = $item->quantity;
+                $product->quantity = $quantity;
+                $cart[$product->slug] = $product;
+                session()->put('cart', $cart);
+            }
+
+            return redirect()->route('cart-show'); // Redirecciona a la página del carrito
         }
     }
 
+    /**
+     * Elimina un carrito de la base de datos.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
-        Cart::destroy($id);
-        return redirect()->back();
+        Cart::destroy($id); // Elimina un carrito específico de la base de datos
+        return redirect()->back(); // Redirecciona de vuelta a la página anterior
     }
 
+    /**
+     * Procesa el pago utilizando Stripe.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function checkout()
+    {
+        // Configura la clave secreta de Stripe
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
+        // Obtiene el carrito de la sesión
+        $cart = session()->get('cart', []);
+
+        // Inicializa una matriz para almacenar los elementos de la línea del carrito
+        $lineItems = [];
+
+        // Recorre cada elemento en el carrito y agrega un elemento de línea para cada producto
+        foreach ($cart as $slug => $product) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $product->name,
+                        'images' => [$product->image],
+                    ],
+                    'unit_amount' => $product->price * 100 + 390, // Convierte el precio a centavos y suma 390 para el envío
+                ],
+                'quantity' => $product->quantity,
+            ];
+        }
+
+        // Crea una sesión de pago en Stripe con los elementos de la línea del carrito
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => $lineItems,
+            'mode' => 'payment',
+            'success_url' => route('checkout.success'), // URL de redirección en caso de éxito
+            'cancel_url' => route('order-detail'), // URL de redirección en caso de cancelación
+        ]);
+
+        return redirect($session->url); // Redirecciona a la URL de la sesión de pago de Stripe
+    }
+
+    /**
+     * Método para manejar la redirección después del éxito del pago.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function success()
+    {
+        return redirect('/'); // Redirecciona a la página de inicio
+    }
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/admin', [DashBoardController::class, 'getDashBoard']);
+Route::get('/admin', [DashBoardController::class, 'getDashBoard'])->middleware('admin');
 
 Route::prefix('/admin')->group(function(){
     Route::get('/users', [UsersController::class, 'getUsers']);
@@ -38,7 +38,7 @@ Route::prefix('/admin')->group(function(){
 
 
 
-});
+})->middleware('admin');
 
 
 

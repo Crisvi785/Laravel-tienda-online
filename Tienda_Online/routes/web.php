@@ -49,7 +49,8 @@ Route::post('/recover', [AuthController::class, 'postRecover'])->name('recover')
 
 
 //Routes para que ver el producto con sus características
-Route::get('/products/{product}', [ProductShopController::class, 'getProducto'])->name('product.show');
+Route::get('/search', [ProductShopController::class, 'getProducto'])->name('search');
+Route::get('/products/{product}', [ProductShopController::class, 'viewProducto'])->name('product.show');
 
 //Routes para información
 
@@ -75,9 +76,14 @@ Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->name( 'cart
 
 //Dirección de envío
 Route::post('/guardar-datos-envio', [EnvioController::class, 'guardarDatosEnvio'])->name('guardar_datos_envio');
+Route::post('/actualizar-datos-envio', [EnvioController::class, 'update'])->name('update');
+Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('/success', [CartController::class, 'success'])->name('checkout.success');
+
+Route::get('/pdf', [EnvioController::class, 'generarFactura'])->name('factura');
 
 
-//Pago
+
 
 
 

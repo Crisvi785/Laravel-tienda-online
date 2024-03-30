@@ -26,7 +26,7 @@
     @foreach ($products as $product)
     <div class="col-md-4 white-panel Mjgb">
       <div class="panel-body center">
-        <a data-cc-animate-click="" class="view-all-link" href="/products/{{$product->name}}" style="font-size:15px!important;font-weight:400!important">
+        {{-- <a data-cc-animate-click="" class="view-all-link" href="/products/{{$product->name}}" style="font-size:15px!important;font-weight:400!important"> --}}
           <img src="/static/images/ppimage/{{$product->image}}" style="height: 300px">
         </a>
       </div>
@@ -47,8 +47,13 @@
     @endforeach
   </div>
 </div>
-
-
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="/static/images/front/BEST_SELLERS_ALARGADO.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
  
   <div class="panel shadow">
     <div class="NewFooter">

@@ -59,11 +59,12 @@
               <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ url("/static/images/logo.png")}}"></a>
         
               <div class="search-container">
-                <form class="search-form" action="/search" method="GET">
-                  <input class="search-input" type="text" placeholder="Search..." aria-label="Search">
-                  <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <form class="search-form" action="{{ route('search') }}" method="GET">
+                    <input class="search-input" type="text" name="search" placeholder="Search..." aria-label="Search">
+                    <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
-              </div>
+            </div>
+            
               
   
                 <ul class="navbar-nav ml-auto">

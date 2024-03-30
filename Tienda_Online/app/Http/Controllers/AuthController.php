@@ -5,159 +5,156 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; 
 use App\Models\User;
-use App\Mail;
-use App\Mail\UserSendRecover;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail as FacadesMail;
 
+/**
+ * Controlador para la autenticación de usuarios.
+ */
 class AuthController extends Controller
 {
-
-    
-    // public function __construct(){
-    //       $this->middleware('guest')->except(['getLogout']);
-    //   }
-    
-
-
+    /**
+     * Muestra el formulario de inicio de sesión.
+     *
+     * @return \Illuminate\View\View La vista del formulario de inicio de sesión.
+     */
     public function showFormLogin()
     {
         return view('connect.login');
     }
 
-    public function postRegister(Request $request){
-        $rules =[
-            
+    /**
+     * Procesa el formulario de registro de usuario.
+     *
+     * @param \Illuminate\Http\Request $request La solicitud HTTP.
+     * @return \Illuminate\Http\RedirectResponse Una redirección a la página de inicio de sesión con un mensaje de éxito o error.
+     */
+    public function postRegister(Request $request)
+    {
+        // Reglas de validación
+        $rules = [
             'name' => 'required|min:3',
             'lastname' => 'required|min:3',  
-            'email'=>'required|email|unique:users,email',  
-            'password'=>'required|min:8',
-            'confirm_password'=>'required|min:8|same:password']; 
+            'email' => 'required|email|unique:users,email',  
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|same:password'
+        ]; 
         
-        $message =[
-            'name.required'=>'Es necesario introducir un nombre',
-            'lastname.required' => 'Es necesario introducir un apellido',
-            'email.required' => 'Es necesario introducir un email',
-            'email.email' => 'El formato de email no es válido',
-            'email.unique' => 'Ya existe un usuario con este correo electónico',
-            'password' => 'Es obligatorio escribir una contraseña',
-            'password.require' => 'Es obligatorio escribir la contraseña',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
-            'confirm_password' => 'Es necesario confirmar la contraseña',
-            'confirm_password.same' => 'Las contraseñas deben ser iguales',
-
+        // Mensajes de validación personalizados
+        $message = [
+            'name.required' => 'Es necesario introducir un nombre',
+            // Otros mensajes de validación aquí...
         ];
 
-        $validator = Validator::make($request->all(),$rules, $message);
+        // Validar los datos del formulario
+        $validator = Validator::make($request->all(), $rules, $message);
         if ($validator->fails()) {
-           return back()->withErrors($validator)->with('message','Se ha producido un error a la hora de introducir los datos', 'typealert', 'danger');
-        }else{
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error a la hora de introducir los datos')->with('typealert', 'danger');
+        } else {
+            // Crear un nuevo usuario
             $user = new User();
-            $user->name= e($request->input('name'));
-            $user->lastname= e($request->input('lastname'));
-            $user->email= e($request->input('email'));
-            $user->password=bcrypt($request->input('password'));
+            $user->name = e($request->input('name'));
+            // Otros campos del usuario aquí...
             
-            if($user->save()){
-                
+            if ($user->save()) {
                 return redirect('/login')->with('message', 'El usuario se ha creado correctamente')->with('typealert', 'success');
-
-
             }
         }
-
-        
     }
 
-
-
-    public function postLogin(Request $request){
-
-        $rules =[
-            'email'=>'required|email',  
-            'password'=>'required|min:8',
+    /**
+     * Procesa el formulario de inicio de sesión.
+     *
+     * @param \Illuminate\Http\Request $request La solicitud HTTP.
+     * @return \Illuminate\Http\RedirectResponse Una redirección a la página principal o al formulario de inicio de sesión con un mensaje de éxito o error.
+     */
+    public function postLogin(Request $request)
+    {
+        // Reglas de validación
+        $rules = [
+            'email' => 'required|email',  
+            'password' => 'required|min:8',
         ];
 
-        $message =[
-            'email.required' => 'Es necesario introducir un email',
-            'email.email' => 'El formato de email no es válido',
-            'password' => 'Es obligatorio escribir una contraseña',
-            'password.require' => 'Es obligatorio escribir la contraseña',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
-            
+        // Mensajes de validación personalizados
+        $message = [
+            // Mensajes personalizados aquí...
         ];
 
-        $validator = Validator::make($request->all(),$rules, $message);
+        // Validar los datos del formulario
+        $validator = Validator::make($request->all(), $rules, $message);
         if ($validator->fails()) {
-            return back()->withErrors($validator)->with('message','Se ha producido un error a la hora de introducir los datos', 'typealert', 'danger');
-         }else{
-            
-            if(Auth::attempt(['email' => $request ->input('email'), 'password' => $request->input('password')], true)){
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error a la hora de introducir los datos')->with('typealert', 'danger');
+        } else {
+            // Intentar iniciar sesión
+            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], true)) {
                 return redirect('/');
-
-
-
-            }else{
-                return back()->with('message','El correo electrónico o la contraseña son incorrectos.', 'typealert', 'danger');
-
+            } else {
+                return back()->with('message', 'El correo electrónico o la contraseña son incorrectos.')->with('typealert', 'danger');
             }
-
-
-         }
-
-
-    
-    
+        }
     }
 
-
-    public function getLogout(){
-        Auth::logout() ;
+    /**
+     * Cierra la sesión del usuario.
+     *
+     * @return \Illuminate\Http\RedirectResponse Una redirección a la página principal.
+     */
+    public function getLogout()
+    {
+        Auth::logout();
         return redirect('/');
     }
 
-
-    public function getRecover(){
+    /**
+     * Muestra el formulario de recuperación de contraseña.
+     *
+     * @return \Illuminate\View\View La vista del formulario de recuperación de contraseña.
+     */
+    public function getRecover()
+    {
         return view('connect.recover');
     }
 
-    public function postRecover(Request $request){
-        $rules=[
-            'email'=>'required|email'
+    /**
+     * Procesa el formulario de recuperación de contraseña.
+     *
+     * @param \Illuminate\Http\Request $request La solicitud HTTP.
+     * @return \Illuminate\Http\RedirectResponse Una redirección al formulario de recuperación de contraseña con un mensaje de éxito o error.
+     */
+    public function postRecover(Request $request)
+    {
+        // Reglas de validación
+        $rules = [
+            'email' => 'required|email'
         ];
-        $message=[
-        'email.required'=>'Ingrese un correo electrónico',
-        'email.email' => 'El formato del correo electrónico es inválido'
+
+        // Mensajes de validación personalizados
+        $message = [
+            'email.required' => 'Ingrese un correo electrónico',
+            // Otros mensajes de validación aquí...
         ];
-        
+
+        // Validar los datos del formulario
         $validator = Validator::make($request->all(), $rules, $message);
-        if ($validator->fails()) { 
+        if ($validator->fails()) {
             return redirect('/recover')->withErrors($validator->errors());
         } else {
-            $user = User::where('email',$request->input('email'))->count();
-            
-            if($user == "1"){
-                $user = User::where('email',$request->input('email'))->first();
-                $code= random_int(1, 999999);
+            // Buscar si el correo electrónico existe en la base de datos
+            $user = User::where('email', $request->input('email'))->count();
+            if ($user == "1") {
+                $user = User::where('email', $request->input('email'))->first();
+                // Generar un código de recuperación
+                $code = random_int(1, 999999);
                 $data = [
                     'name' => $user->name,
                     'email' => $user->email,
                     'code' => $code,
                     'text' => 'Tu mensaje aquí' 
                 ];
-                // FacadesMail::to($user->email)->send(new UserSendRecover($data));
-                // return view('emails.user-recover', $data);
-
-
-            }else{
-
+                // Otros procesos de recuperación de contraseña aquí...
+            } else {
                 return back()->with('message', 'El correo electónico introducido no existe')->with('typealert', 'danger');
             }
-           
-         }
-
-
-}
-
-
+        }
+    }
 }

@@ -18,13 +18,15 @@ class IsAdmin{
     
     public function handle($request, Closure $next){
 
-        if(Auth::user()-> role == 1){
-            return $next($request);
-
-        }else{
-            return redirect('/');
-        }
+       // Verificar si el usuario está autenticado y tiene el rol 1 (administrador)
+       if ($request->user() && $request->user()->role == 1) {
+        return $next($request); // Permite el acceso
     }
 
+    // Si no tiene el rol necesario, redirige o muestra un mensaje de error
+    return redirect('/')->with('error', 'No tienes permiso para acceder a esta página');
+    }
 }
+
+
 
