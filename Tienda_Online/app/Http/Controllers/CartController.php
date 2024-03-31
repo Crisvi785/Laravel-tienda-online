@@ -206,7 +206,7 @@ class CartController extends Controller
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $product->name,
-                        'images' => [$product->image],
+                    
                     ],
                     'unit_amount' => $product->price * 100 + 390, // Convierte el precio a centavos y suma 390 para el envío
                 ],
