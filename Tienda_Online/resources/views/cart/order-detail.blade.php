@@ -7,12 +7,18 @@
         </div>
 <div class="row">
     <div class="col-md-6">
+        @if(Auth::check())
         <h3>Datos del usuario</h3>
         <table class="table table-striped table-hover table-bordered">
-            <tr><td>Nombre:</td><td>{{Auth::user()->name . " " . Auth::user()->lastname}}</td></tr>
-            <tr><td>Correo:</td><td>{{Auth::user()->email}}</td></tr>
-            
+            <tr><td>Nombre:</td><td>{{ Auth::user()->name . " " . Auth::user()->lastname }}</td></tr>
+            <tr><td>Correo:</td><td>{{ Auth::user()->email }}</td></tr>
         </table>
+    @else
+        <div class="alert alert-danger">
+            <p>No hay usuario registrado.</p>
+            <p>Por favor, <a href="/login">inicia sesión</a>.</p>
+        </div>
+    @endif
     </div>
     <div class="col-md-6">
         <h3>Datos del Envío</h3>
@@ -132,7 +138,6 @@
                         actions.order.capture().then(function(details) {
                             console.log(details);
                             //Redirigir a Order-details o a compra realizada con éxito
-                            window.location.href = "{{ route('factura') }}"; // Corrección aquí
                      });
                     },
 

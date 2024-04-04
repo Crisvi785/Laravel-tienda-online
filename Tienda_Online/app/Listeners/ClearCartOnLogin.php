@@ -12,7 +12,7 @@ class ClearCartOnLogin
     {
         // Elimina el carrito actual del usuario (si lo hay)
         if ($event->user) {
-            $event->user->cart->delete();
+            session()->forget('cart');
         }
     }
 }

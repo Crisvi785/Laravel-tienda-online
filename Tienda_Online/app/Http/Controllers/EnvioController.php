@@ -23,11 +23,19 @@ class EnvioController extends Controller
         ]);
 
         // Obtener el usuario autenticado actualmente
-        $user = auth()->user();
+        if (auth()->check()) {
+            $user = auth()->user(); // Obtener el ID del usuario autenticado
+        } else {
+            $user = 1; // Si el usuario no está autenticado, establecer user_id en 0
+        }
 
         // Crear un nuevo registro de envío asociado con el usuario actual
         $envio = new Envio();
-        $envio->user_id = $user->id;
+        if ($user !== 1) {
+            $envio->user_id = $user->id;
+        } else {
+            $envio->user_id = 1;
+        }
         $envio->nombre = $request->input('nombre');
         $envio->direccion = $request->input('direccion');
         $envio->codigo_postal = $request->input('codigo_postal');

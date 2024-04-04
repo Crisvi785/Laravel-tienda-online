@@ -12,6 +12,16 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
+        //Crear un usuario ficticio para usuarios no registrados
+        User::create([
+            'id' => 1,
+            'name' => 'Guest',
+            'lastname' => '',
+            'email' => 'guest@example.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+
         // Crear un usuario con role 1
         User::create([
             'role' => 1,
@@ -33,5 +43,6 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => now(),
             ]);
         }
+
     }
 }
