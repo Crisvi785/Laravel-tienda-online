@@ -16,20 +16,8 @@
     </div>
     <div class="panel-body" style="font-weight:bold; text-align: right">
       <p>{{$product->price}}€</p>
-      <!-- Agregar un menú desplegable para las tallas -->
-      <div class="form-group">
-        <label for="size">Talla:</label>
-        <select class="form-control" id="size">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-      </div>
       <div class="panel-body" style="font-weight:bold; text-align: right">
         <p>{{ $product->content }}</p>
-
-
       <hr>
       <a href="{{ route('cart-add', $product->slug) }}" class="btn btn-add-to-cart btn-success"><i class="fa fa-cart-plus"></i> Añadir al carrito</a>
     </div>

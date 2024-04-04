@@ -64,14 +64,14 @@
                     <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
-            
-              
-  
                 <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item">
-                        <a href="{{ url('/login')}} " class="nav-link btn"><i class="fas fa-user"></i>  </a>
-                    </li>
+                  <li class="nav-item">
+                    <a href="{{ Auth::check() ? url('/account') : url('/login') }}" class="nav-link btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                
                     <li class="nav-item">
                         <a href="{{ url('/cart/show')}} " class="nav-link btn"><i class="fa-solid fa-cart-shopping"></i><span class="carnumber"> </span>  </a>
                     </li>
@@ -79,14 +79,8 @@
                 </ul>
             </div>
           </nav> 
-        
-
-
+  
         @section('content')
         @show
-
-
-        
-
     </body>
 </html>

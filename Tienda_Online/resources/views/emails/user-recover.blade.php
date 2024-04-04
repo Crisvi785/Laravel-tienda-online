@@ -7,8 +7,6 @@
         border-radius: 4px; text-decoration: none;">Resetear mi contraseñar</a></p>
         <p>Si el botón anterior no le funciona copie y pegue este enlace en su navegador:</p>
         <p>{{ url('/reset?email='.$email) }}</p>
-       
-
    @stop
    
 

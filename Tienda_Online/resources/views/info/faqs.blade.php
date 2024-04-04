@@ -51,11 +51,7 @@
 
     </div>
     <div class="faq-answer">When your order ships, you will receive an email from the shipping company containing the tracking information of your order.
-
-
     </div>
 </div>
 </div>
-
-
 @endsection

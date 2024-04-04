@@ -42,7 +42,7 @@ class ProductsTableSeeder extends Seeder
                 'slug' => 'producto-' . $i,
                 'category_id' => rand(1, 6),
                 'image' => $imageName,
-                'price' => rand(20, 180), 
+                'price' => rand(20, 150), 
                 'in_discount' => rand(0, 1), 
                 'discount' => rand(5, 50), 
                 'content' => 'Descripción del Producto ' . $i,

@@ -19,9 +19,6 @@
             </div>
           {!! Form::email('email', null,['class' => 'form-control', 'required']) !!}
         </div>
-
-    
-
         {!! Form::submit('Recuperar Contraseña', ['class'=> 'btn btn-success mtop16']) !!}
         {!! Form::close() !!}
 
@@ -49,8 +46,6 @@
         <div class="footer mtop16">
           <a href="{{ url('/register')}}">¿No tienes una cuenta?. Registrate</a>
           <a href="{{ url('/login')}}">Ingresar a mi cuenta</a>
-
-        
         </div>
         </div>
             

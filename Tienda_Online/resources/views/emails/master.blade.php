@@ -6,9 +6,6 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css"/>
     <script type="text/javascript" src="/static/admin/js/jquery.js"></script>
-
-
-
 </head>
 
 <body style="margen: 0px; padding: 0px;  backgroung-color: #f3f3f3;">
@@ -26,8 +23,5 @@
     
 
     </div>
-
-
-
 </body>
 </html>

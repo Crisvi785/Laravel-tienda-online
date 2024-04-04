@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Models\Envio;
 use App\CartItem;
 use App\Http\Models\Cart;
-
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
-
 use App\Models\User;
-use PHPUnit\Event\Test\ComparatorRegistered;
 
 class EnvioController extends Controller
 {
+    // Método para guardar los datos de envío
     public function guardarDatosEnvio(Request $request)
     {
         // Validar los datos del formulario si es necesario
@@ -24,6 +22,7 @@ class EnvioController extends Controller
             'localidad' => 'required|string',
         ]);
 
+        // Obtener el usuario autenticado actualmente
         $user = auth()->user();
 
         // Crear un nuevo registro de envío asociado con el usuario actual
@@ -33,6 +32,8 @@ class EnvioController extends Controller
         $envio->direccion = $request->input('direccion');
         $envio->codigo_postal = $request->input('codigo_postal');
         $envio->localidad = $request->input('localidad');
+        
+        // Guardar el registro de envío en la base de datos
         if ($envio->save()) {
             // Redireccionar con éxito y los datos de envío como parte de la URL
             return redirect()->back()->withInput($request->all())->with('success', 'Los datos de envío se han guardado correctamente.');
@@ -42,25 +43,23 @@ class EnvioController extends Controller
         }
     }
     
+    // Método para generar una factura en formato PDF
     public function generarFactura() {
-        $cart = Cart::all(); // Por ejemplo, obtén todos los elementos del carrito desde tu modelo
+        $cart = Cart::all(); // Obtener todos los elementos del carrito desde el modelo
 
-        $html = view('cart.doc', compact('cart'))->render(); // Reemplaza 'ruta.a.tu.plantilla' con la ruta real de tu plantilla HTML
+        // Renderizar la vista 'cart.doc' con los datos del carrito
+        $html = view('cart.doc', compact('cart'))->render(); // Reemplazar 'ruta.a.tu.plantilla' con la ruta real de tu plantilla HTML
     
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
     
-        // (Opcional) Configuraciones adicionales, como tamaño de página y orientación
+        // Configuraciones adicionales, como tamaño de página y orientación
         $dompdf->setPaper('A4', 'portrait');
     
-        // Renderiza el HTML en PDF
+        // Renderizar el HTML en PDF
         $dompdf->render();
     
-        // Descarga o muestra el PDF generado
+        // Descargar o mostrar el PDF generado
         return $dompdf->stream("factura_pedido.pdf");
     }
-
-
-
-    
 }

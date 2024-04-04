@@ -30,9 +30,6 @@
     <p class="p1">Everything we have achieved so far has been possible thanks to all of you who have been supporting the brand from minute 1. So thanks.</p>
     <p class="p1">&nbsp;</p>
     <p class="p1">&nbsp;</p>
-
     </div>
 </div>
-
-
 @endsection

@@ -1,5 +1,6 @@
 body {
     background-color: #f6f6f6;
+    font-size: 14px;
     margin: 0px auto;
 }
 
@@ -11,11 +12,52 @@ body {
     background-color: #fff;
     border-radius: 8px;
     border: 1px solid #d6d6d6;
+    position: absolute;
     padding: 15px;
     width: 500px;
 
     .btn-success {
-        background-color: #E85722
+        background-color: #2B7551;
+        border: 0px;
         width: 100%;
     }
+    .inside{
+        padding: 16px;   
+    }
+    .header{
+        height: 73px;
+        display: flex;
+        justify-content: center;
+        .a{
+            display: flex;
+            .img{
+                width: 100%; 
+
+            }
+        }
+    } 
+
+    .footer{
+        text-align: center;
+        a{
+            display: inline block;
+            &:last-child{
+                margin-left: 24px;
+
+
+            }
+            
+        }
+    }
+}
+
+.box_login{
+    left: calc(50% - 250px);
+    top: calc(30% - 90px) ;
+}
+
+.box_register{
+    left: calc(50% - 250px);
+    top: calc(50% - 305px) ;
+
 }

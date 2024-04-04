@@ -14,8 +14,6 @@
         </script> 
     </head>
     <body>
-
-
         @section('content')
         @show
 

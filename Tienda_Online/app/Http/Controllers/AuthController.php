@@ -42,7 +42,6 @@ class AuthController extends Controller
         // Mensajes de validación personalizados
         $message = [
             'name.required' => 'Es necesario introducir un nombre',
-            // Otros mensajes de validación aquí...
         ];
 
         // Validar los datos del formulario
@@ -53,7 +52,13 @@ class AuthController extends Controller
             // Crear un nuevo usuario
             $user = new User();
             $user->name = e($request->input('name'));
-            // Otros campos del usuario aquí...
+            $user->lastname = e($request->input('lastname'));
+            $user->email = $request->input('email');
+            $user->password = $request->input('password');
+
+
+
+            
             
             if ($user->save()) {
                 return redirect('/login')->with('message', 'El usuario se ha creado correctamente')->with('typealert', 'success');

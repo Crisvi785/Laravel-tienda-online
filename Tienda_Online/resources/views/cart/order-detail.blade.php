@@ -57,11 +57,7 @@
 </div>
         
         
-        {{-- <form action="{{ route('actualizar_datos_envio') }}" method="POST">
-            <!-- Campos de formulario -->
-            @csrf
-            <button type="submit">Actualizar Datos de Envío</button>
-        </form> --}}
+  
     </div>
         
         <div class="col-md-10 col-md-offset-1" style="text-align: center; margin-left: 100px">
@@ -148,91 +144,15 @@
             </script>
 
         </div>
-
-              {{-- <div  class="card-form"    id="card-form" >
-  
-              <!-- Campos ocultos para recibir el ID de operación o el código de error -->
-              <form name="datos">
-                  <input type="hidden" id="token">
-                  <input type="hidden" id="errorCode">
-                  <a href="javascript:alert(document.datos.token.value + '--' + document.datos.errorCode.value)">Ver ID de Operación</a>
-              </form>
-
-              <script>
-                  // Función de validación personalizada del comerciante
-                  function merchantValidationEjemplo() {
-                      // Inserta tus validaciones personalizadas aquí
-                      alert("Esto son validaciones propias");
-                      return true;
-                 
-                  }
-          
-                  // Listener para recibir el ID de operación
-                  window.addEventListener("message", function receiveMessage(event) {
-                      storeIdOper(event, "token", "errorCode", merchantValidationEjemplo);
-                  });
-          
-                  // Función para generar el número de pedido
-                  function pedido() {
-                      return "pedido" + Math.floor((Math.random() * 1000) + 1);
-                  }
-          
-                  // Configuración del formulario inSite
-                  var insiteJSON = {
-                      "id": "card-form",
-                      "fuc": "999008881", // Inserta tu FUC (código de comercio) proporcionado por Redsys
-                      "terminal": "1", // Terminal
-                      "order": pedido(), // Número de pedido generado dinámicamente
-                      "buttonValue":  "Pagar con tarjeta", // Valor del botón de pago
-                      "estiloInsite": "twoRows" // Estilo del formulario (opcional)
-                  };
-          
-                  // Llama a la función para obtener el formulario inSite
-                  getInSiteFormJSON(insiteJSON);
-                  
-               
-  
-              
-              
-              </script>
-  
-              
-          </div>					 --}}
-
-{{-- 
-          <form name="from" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST">
-            <input type="hidden" name="Ds_SignatureVersion" value="HMAC_SHA256_V1"/>
-            <input type="hidden" name="Ds_MerchantParameters" value="
-                eyJEU19NRVJDSEFOVF9BTU9VTlQiOiAiMTQ1IiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiAiOTc4IiwiRFNfTUVSQ0hBTlRfTUVSQ0hBTlRDT0RFIjogIjk5OTAwODg4MSIsIkRTX01FUkNIQU5UX01FUkNIQU5UVVJMIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxOb3RpZmljYWNpb24ucGhwIiwiRFNfTUVSQ0hBTlRfT1JERVIiOiAiMTQ0NjA2ODU4MSIsIkRTX01FUkNIQU5UX1RFUk1JTkFMIjogIjEiLCJEU19NRVJDSEFOVF9UUkFOU0FDVElPTlRZUEUiOiAiMCIsIkRTX01FUkNIQU5UX1VSTEtPIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxLTy5waHAiLCJEU19NRVJDSEFOVF9VUkxPSyI6ICJodHRwOi8vd3d3LnBydWViYS5jb20vdXJsT0sucGhwIn0="/>
-            <input type="hidden" name="Ds_Signature" value="sq7HjrUOBfKmC576ILgskD5srU870gJ7"/>	
-            <button class="btn btn-primary" id="tjBtn" style="font-size: large; margin-bottom:10px">Pagar con Tarjeta <i class="fa fa-credit-card fa-x2"></i></button>
-        </form>
-					 --}}
-
-                     <form action="{{route('checkout')}}" method="POST">
-                        @csrf
-                        
-                        <button class="btn btn-primary" id="tjBtn" style="font-size: large; margin-bottom:10px">Pagar con Tarjeta <i class="fa fa-credit-card fa-x2"></i></button>
-                    </form>
+            <form action="{{route('checkout')}}" method="POST">
+                @csrf          
+                <button class="btn btn-primary" id="tjBtn" style="font-size: large; margin-bottom:10px">Pagar con Tarjeta <i class="fa fa-credit-card fa-x2"></i></button>
+            </form>
           
           <div class="mtop16">
-
               <a href="{{ route('cart-show') }}" class="btn btn-primary" style="font-size: large;  margin-bottom:10px">
                     <i class="fa fa-chevron-circle-left fa-x2"></i> Volver al carrito</a>    
           </div>
-        {{-- <a href="{{ URL('/pdf') }}" class="btn btn-primary" style="font-size: larger; margin-bottom:10px">
-            Descargar comprobante <i class="fa fa-download fa-x2"></i></a> --}}
     </div>
-
-
-       
-
-       
-
-    
-    </div>
-
-
-
-
+</div>
 @endsection

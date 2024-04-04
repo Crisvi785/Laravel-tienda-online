@@ -57,8 +57,6 @@
                 <input class="form-control mr-sm-2" type="" placeholder="" aria-label=""><i class="fa-solid fa-magnifying-glass"></i>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
-        
-            
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
@@ -71,9 +69,6 @@
                 </ul>
             </div>
           </nav> 
-        
-
-
         @section('content')
         @show
 

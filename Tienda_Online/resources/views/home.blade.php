@@ -18,15 +18,11 @@
   </div>
 </div>
 
-
-
-
 <div class="panel-body">
   <div class="product-list CustomProductList cf product-list--rows mob-two-col grid--uniform" data-result-count="545" data-infinite-scroll-results="">
     @foreach ($products as $product)
     <div class="col-md-4 white-panel Mjgb">
       <div class="panel-body center">
-        {{-- <a data-cc-animate-click="" class="view-all-link" href="/products/{{$product->name}}" style="font-size:15px!important;font-weight:400!important"> --}}
           <img src="/static/images/ppimage/{{$product->image}}" style="height: 300px">
         </a>
       </div>

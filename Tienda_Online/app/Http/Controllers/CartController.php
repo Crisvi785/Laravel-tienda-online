@@ -43,6 +43,7 @@ class CartController extends Controller
     public function add($slug)
     {
         $product = Products::where('slug', $slug)->firstOrFail(); // Busca el producto por el slug
+        
         $cart = session()->get('cart', []); // Obtiene el carrito de la sesión
         $product->quantity = 1; // Establece la cantidad del producto a 1
         $cart[$product->slug] = $product; // Agrega el producto al carrito
@@ -206,7 +207,6 @@ class CartController extends Controller
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $product->name,
-                    
                     ],
                     'unit_amount' => $product->price * 100 + 390, // Convierte el precio a centavos y suma 390 para el envío
                 ],

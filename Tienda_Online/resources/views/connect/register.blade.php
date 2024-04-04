@@ -4,11 +4,6 @@
 
 @section('content')
 <div class="box box_register shadow">
-      {{-- <div class="header">
-        <a href="{{ url('/')}}">
-        <img src="{{ url('/static/images/logo.jpg')}}" >
-        </a>
-      </div> --}}
         <div class="inside">
           {!! Form::open(['url' => '/register']) !!}
           <label for="name">Nombre: </label>
@@ -27,11 +22,6 @@
           </div>
         {!! Form::text('lastname', null,['class' => 'form-control', 'required' ]) !!}
       </div>
-
-
-
-
-
           <label for="email" class="mtop16">Correo electrónico: </label>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
