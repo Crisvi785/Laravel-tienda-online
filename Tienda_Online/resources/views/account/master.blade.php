@@ -22,7 +22,7 @@
         <!-- Menú principal de la barra lateral -->
   <div class="main">
     <header>
-      <a href="#">Mi Cuenta</a>
+      Mi cuenta
     </header>
     <ul class="nav">
       <li>
