@@ -1,55 +1,54 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-}
+   body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
 
-#viewport {
-  padding-left: 250px;
-  transition: padding-left 0.5s ease;
-}
+    .main {
+        width: 250px;
+        background-color: #748e81;
+        height: 100vh; /* Ocupa toda la altura disponible */
+        position: fixed; /* Permanece fijo en la pantalla */
+        top: 0;
+        left: 0;
+        overflow-x: hidden; /* Oculta el scroll horizontal si es necesario */
+    }
 
-#content {
-  width: 100%;
-  position: relative;
-}
+    .main header {
+        padding: 10px;
+        background-color: #2B7551;
+        color: #7aa08e;
+        text-align: center;
+    }
 
-#sidebar {
-  z-index: 1000;
-  position: fixed;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  overflow-y: auto;
-  background: #2B7551;
-  transition: left 0.5s ease, margin-left 0.5s ease;
-}
+    .main ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-#sidebar header {
-  background-color: #193b2a;
-  font-size: 20px;
-  line-height: 52px;
-  text-align: center;
-}
+    .main ul li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
 
-#sidebar header a {
-  color: #fff;
-  display: block;
-  text-decoration: none;
-}
+    .main ul li a {
+        text-decoration: none;
+        color: #333;
+    }
 
-#sidebar header a:hover {
-  color: #fff;
-}
+    .main ul li a:hover {
+        background-color: #ddd;
+    }
 
-#sidebar .nav a {
-  color: #CFD8DC;
-  font-size: 14px;
-  padding: 16px 24px;
-  display: block;
-  text-decoration: none;
-  border-bottom: 1px solid #2a5c44;
-}
+    .container {
+        justify-content: center;
+        margin-left: 250px; /* Ajusta el contenido para que no quede debajo de la barra lateral */
+        padding: 20px;
+    }
 
-#sidebar .nav a:hover {
-  color: #ECEFF1;
-}
+    .orders{
+        justify-content: center;
+        margin-left: 20%; /* Ajusta el contenido para que no quede debajo de la barra lateral */
+        padding: 10px;
+    }
+      

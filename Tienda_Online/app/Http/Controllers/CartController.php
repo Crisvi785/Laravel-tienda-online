@@ -10,6 +10,7 @@ use Dompdf\Dompdf; // Importa la clase Dompdf
 
 use App\Product;
 use App\Http\Requests;
+use App\Models\Pedido;
 use App\Models\User as ModelsUser;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -232,6 +233,34 @@ class CartController extends Controller
      */
     public function success()
     {
+            // Obtiene el carrito de la sesión
+        $cart = session()->get('cart', []);
+
+        // Obtiene el user_id del usuario autenticado o establece 1 si no hay ninguno
+        $user_id = auth()->id() ?? 1;
+
+        // Inicializa una matriz para almacenar los datos del pedido
+        $pedidoData = [];
+
+        // Recorre cada elemento en el carrito y agrega los datos del pedido
+        foreach ($cart as $slug => $product) {
+            $pedidoData[] = [
+                'user_id'  => $user_id,
+                'product_slug' => $slug,
+                'quantity' => $product->quantity,
+                'total_price' => $product->price * $product->quantity,
+                // Agrega más datos del pedido si es necesario
+            ];
+        }
+
+        // Guarda los datos del pedido en la tabla de pedidos
+        Pedido::insert($pedidoData);
+
+
+        // Limpia el carrito de la sesión después de completar el pedido
+            
+        session()->forget('cart');
+        
         return redirect('/'); // Redirecciona a la página de inicio
     }
 }

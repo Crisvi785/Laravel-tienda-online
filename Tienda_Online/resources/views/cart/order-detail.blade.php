@@ -53,13 +53,7 @@
             </form>
         </table>
     </div>
-    {{-- <div class="col-md-6">
-        <table class="table table-striped table-hover table-bordered">
-            <tr><td>Dirección:</td><td>{{ $data['direccion'] }}</td></tr>
-            <tr><td>Código Postal:</td><td>{{ $data['codigo_postal'] }}</td></tr>
-            <tr><td>Localidad:</td><td>{{ $data['localidad'] }}</td></tr> 
-        </table>
-    </div> --}}
+   
 </div>
         
         

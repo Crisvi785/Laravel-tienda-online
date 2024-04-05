@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Models\Envio;
+use App\Models\Pedido;
 
 class AccountController extends Controller
 {
@@ -27,12 +28,25 @@ class AccountController extends Controller
        }
 
        public function getPedidos(){
-        if (count(session()->get('cart')) <= 0) return redirect()->route('home'); // Redirecciona a la página de inicio si el carrito está vacío
-        $cart = session()->get('cart'); // Obtiene el carrito de la sesión
-        $total = $this->total(); // Calcula el total del carrito
-        $user = Auth::user(); // Obtiene el usuario autenticado
-        $ship = session()->get('shippment'); // Obtiene el costo de envío
-        $envio = Envio::where('user_id', Auth::id())->first();
-        return view('account.pedidos', compact('cart', 'total', 'user', 'envio'));
+        if (Auth::check()) {
+            $user = Auth::user(); // Obtiene el usuario autenticado
+        
+            // Obtén los pedidos asociados al usuario autenticado
+            $pedidos = Pedido::where('user_id', $user->id)->get();
+        
+            $envio = Envio::where('user_id', $user->id)->first();
+        
+           // Calcula el total de cada pedido individualmente
+             foreach ($pedidos as $pedido) {
+                  $pedido->total = $pedido->total_price;
+             }
+                
+             return view('account.pedidos', compact('pedidos', 'user', 'envio'));
+            } else {
+            return redirect()->route('home'); // Redirecciona a la página de inicio si el usuario no está autenticado
+        }
+
+
+
        }
 }

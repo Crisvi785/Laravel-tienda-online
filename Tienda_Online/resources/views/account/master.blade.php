@@ -16,38 +16,32 @@
         </script> 
     </head>
     <body>
-        @section('content')
-        @show
 
-        <div id="viewport">
-            <!-- Sidebar -->
-            <div id="sidebar">
-              <header>
-                <a href="#">Mi Cuenta</a>
-              </header>
-              <ul class="nav">
-                <li>
-                  <a href="{{ url('/account')}}">
-                    <i class="zmdi zmdi-link"></i> Perfil
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('/account/pedidos')}}">
-                    <i class="zmdi zmdi-widgets"></i> Pedidos
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('/logout')}}">
-                    <i class="zmdi zmdi-calendar"></i> ¿No eres tú?
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="zmdi zmdi-comment-more"></i> Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
+      @section('content')
+      @show
+        <!-- Menú principal de la barra lateral -->
+  <div class="main">
+    <header>
+      <a href="#">Mi Cuenta</a>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="{{ url('/account')}}">
+          <i class="zmdi zmdi-link"></i> Perfil
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('/account/pedidos')}}">
+          <i class="zmdi zmdi-widgets"></i> Pedidos
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('/logout')}}">
+          <i class="zmdi zmdi-calendar"></i> Cerrar Sesión
+        </a>
+      </li>
+    </ul>
+  </div>
+      
     </body>
 </html>
