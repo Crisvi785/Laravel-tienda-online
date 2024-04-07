@@ -1,63 +1,77 @@
+/* Estilos generales del cuerpo */
 body {
-    background-color: #f6f6f6;
-    font-size: 14px;
-    margin: 0px auto;
+    background-color: #f6f6f6; /* Color de fondo */
+    font-size: 14px; /* Tamaño de fuente */
+    margin: 0px auto; /* Centra el contenido horizontalmente */
 }
 
+/* Clase para margen superior */
 .mtop16 {
     margin-top: 16px;
 }
 
+/* Estilos para el contenedor principal */
 .box {
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #d6d6d6;
-    position: absolute;
-    padding: 15px;
-    width: 500px;
+    background-color: #fff; /* Color de fondo */
+    border-radius: 8px; /* Borde redondeado */
+    border: 1px solid #d6d6d6; /* Borde */
+    position: absolute; /* Posición absoluta */
+    padding: 15px; /* Relleno */
+    width: 500px; /* Ancho */
 
+    /* Estilos para el botón de éxito */
     .btn-success {
-        background-color: #2B7551;
-        border: 0px;
-        width: 100%;
+        background-color: #2B7551; /* Color de fondo */
+        border: 0px; /* Sin borde */
+        width: 100%; /* Ancho completo */
     }
-    .inside{
-        padding: 16px;   
-    }
-    .header{
-        height: 73px;
-        display: flex;
-        justify-content: center;
-        .a{
-            display: flex;
-            .img{
-                width: 100%; 
 
+    /* Estilos para el contenido interno */
+    .inside {
+        padding: 16px; /* Relleno */
+    }
+
+    /* Estilos para el encabezado */
+    .header {
+        height: 73px; /* Altura */
+        display: flex; /* Mostrar como flexbox */
+        justify-content: center; /* Centrar horizontalmente */
+
+        /* Estilos para el enlace */
+        .a {
+            display: flex; /* Mostrar como flexbox */
+
+            /* Estilos para la imagen */
+            .img {
+                width: 100%; /* Ancho completo */
             }
         }
-    } 
+    }
 
-    .footer{
-        text-align: center;
-        a{
-            display: inline block;
-            &:last-child{
-                margin-left: 24px;
+    /* Estilos para el pie de página */
+    .footer {
+        text-align: center; /* Alinear texto al centro */
 
+        /* Estilos para el enlace */
+        a {
+            display: inline-block; /* Mostrar como bloque en línea */
 
+            /* Estilos para el último enlace */
+            &:last-child {
+                margin-left: 24px; /* Margen izquierdo */
             }
-            
         }
     }
 }
 
-.box_login{
-    left: calc(50% - 250px);
-    top: calc(30% - 90px) ;
+/* Estilos para el contenedor de inicio de sesión */
+.box_login {
+    left: calc(50% - 250px); /* Centrar horizontalmente */
+    top: calc(30% - 90px); /* Posicionar en la parte superior */
 }
 
-.box_register{
-    left: calc(50% - 250px);
-    top: calc(50% - 305px) ;
-
+/* Estilos para el contenedor de registro */
+.box_register {
+    left: calc(50% - 250px); /* Centrar horizontalmente */
+    top: calc(50% - 305px); /* Posicionar en el centro */
 }

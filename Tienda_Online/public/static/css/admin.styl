@@ -1,192 +1,226 @@
-.body{
-    background-color: #f5f6fa;
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+/* Estilos generales del cuerpo */
+.body {
+    background-color: #f5f6fa; /* Color de fondo */
+    font-size: 14px; /* Tamaño de fuente */
+    font-family: 'Roboto', sans-serif; /* Fuente de texto */
+}
 
-    }
-
-.h2,h3,h4,h5,ul,body,html{
+/* Resetear márgenes y rellenos */
+.h2,
+.h3,
+.h4,
+.h5,
+ul,
+body,
+html {
     padding: 0px;
     margin: 0px;
-    
-    }
-.mtop16{
+}
+
+/* Clase para margen superior */
+.mtop16 {
     margin-top: 16px;
-    }
+}
 
-.col-md-0{
-   margin-right: 50px;
-    }
+/* Estilos para columnas */
+.col-md-0 {
+    margin-right: 50px; /* Margen derecho */
+}
 
-.panel{
-    padding: 15px;
-    }
+/* Estilos para paneles */
+.panel {
+    padding: 15px; /* Relleno */
+}
 
-.wrapper{
-    min-height: 100vh;
+/* Envoltorio principal */
+.wrapper {
+    min-height: 100vh; /* Altura mínima de la ventana */
     overflow: hidden;
-    .col1{
-        float: left;
+
+    /* Columna 1 */
+    .col1 {
+        float: left; /* Flotar a la izquierda */
         position: relative;
         z-index: 999;
-        width: 17%;
-        
-        }
-        .col2{
-         float: left;
-        width: 83%;
-            }
+        width: 17%; /* Ancho */
     }
 
-.sidebar{
-    background-color: #fff;
-    min-height: 100vh;
-    .section-top{
-        background-color: #2B7551;
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0, 0.15);
-        }
-    .logo{
-        text-align: center; 
-        display: block;
-        margin: 0px auto;
-        padding-top: 10px;
-        width:40%;
-        }
-    .user{
-        color: #fff !important;
-        padding: 16px;
-        .botonn{
-            color: #fff
-            font-size: 1em
-            }
-        }
-    
-
-    .main{
-        display: block;
-        margin-top: 8px;
-
-        ul{
-            list-style-type: none;
-            margin: 10px;
-
-
-            li{
-                margin-bottom: 4px;
-
-            .a{
-                color: rgb(114, 114, 114)!important
-                display: block;
-                font-size: 1.1em;
-                padding: 12px, 16px;
-                .i{
-                    margin-right: 10px;
-                    }
-                &:hover{
-                    background-color: #2B7551;
-                    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15)
-                    color: #fff !important
-                    text-decoration: none;
-                    }
-                }
-            
-                }
-                
-            
-        
-        }
-
-
-
-
-
+    /* Columna 2 */
+    .col2 {
+        float: left; /* Flotar a la izquierda */
+        width: 83%; /* Ancho */
     }
 }
 
-.navbar{
-    background-color: #2B7551;
+/* Estilos para la barra lateral */
+.sidebar {
+    background-color: #fff; /* Color de fondo */
+    min-height: 100vh;
 
-    .a{
-        margin-right: 10px;
-        color: #fff !important;
-        }
-    
-    
-    
+    /* Sección superior */
+    .section-top {
+        background-color: #2B7551; /* Color de fondo */
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra */
     }
 
-.page{
-    padding-top: 16px;
-    padding-bottom: 16px;
-    .breadcrumb{
-        background-color:  transparent;
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1) !important;
-    
-        .breadcrumb-item{
-            .a{
-                color: #2B7551;
-                &:hover{
-                    text-decoration: none;
+    /* Logo */
+    .logo {
+        text-align: center;
+        display: block;
+        margin: 0px auto;
+        padding-top: 10px;
+        width: 40%; /* Ancho */
+    }
+
+    /* Usuario */
+    .user {
+        color: #fff !important; /* Color de texto */
+        padding: 16px;
+
+        /* Botón */
+        .botonn {
+            color: #fff;
+            font-size: 1em;
+        }
+    }
+
+    /* Contenido principal */
+    .main {
+        display: block;
+        margin-top: 8px;
+
+        /* Lista */
+        ul {
+            list-style-type: none;
+            margin: 10px;
+
+            /* Elemento de lista */
+            li {
+                margin-bottom: 4px;
+
+                /* Enlace */
+                .a {
+                    color: rgb(114, 114, 114) !important;
+                    display: block;
+                    font-size: 1.1em;
+                    padding: 12px, 16px;
+
+                    /* Ícono */
+                    .i {
+                        margin-right: 10px;
+                    }
+
+                    /* Al pasar el mouse */
+                    &:hover {
+                        background-color: #2B7551;
+                        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                        color: #fff !important;
+                        text-decoration: none;
                     }
                 }
-
-
+            }
         }
-    
+    }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #2B7551; /* Color de fondo */
+
+    /* Enlace */
+    .a {
+        margin-right: 10px;
+        color: #fff !important; /* Color de texto */
+    }
+}
+
+/* Estilos para páginas */
+.page {
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    /* Migas de pan */
+    .breadcrumb {
+        background-color: transparent;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+
+        /* Elemento de migas */
+        .breadcrumb-item {
+            /* Enlace */
+            .a {
+                color: #2B7551;
+
+                /* Al pasar el mouse */
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
     }
 
-
-    .panel{
+    /* Panel */
+    .panel {
         background-color: #fff;
         border-radius: 6px;
         border-bottom: 2px;
         border-bottom: solid;
         border-bottom: #78A790;
         width: 100%;
-        .header{
+
+        /* Encabezado */
+        .header {
             border-bottom: 1px, solid, #78A790;
-            .title{
+
+            /* Título */
+            .title {
                 display: inline-block;
-                color:  #343A40;
+                color: #343A40;
                 font-size: 1.1em;
                 padding: 12px, 16px;
-                }
             }
         }
-        .inside{
+
+        /* Contenido */
+        .inside {
             padding: 16px;
+
+            /* Botón primario */
             .btn-primary {
                 color: #fff;
                 background-color: #2B7551;
                 border-color: #2B7551;
-                    }
-            .nav{
-                border-bottom: 1px solid #2B7551;
-                margin-right: 8px,
+            }
 
-                }
-            .big_count{
+            /* Navegación */
+            .nav {
+                border-bottom: 1px solid #2B7551;
+                margin-right: 8px;
+            }
+
+            /* Gran contador */
+            .big_count {
                 display: block;
                 font-size: 2em;
                 text-align: center;
                 width: 100%;
-                }
             }
-
+        }
+    }
 }
 
-.opts{
-    .a{
+/* Opciones */
+.opts {
+    /* Enlace */
+    .a {
         border-radius: 3px;
         display: inline-block;
-        border: 0.5px solid #2B7551;  
+        border: 0.5px solid #2B7551;
         padding: 2px;
         padding: 4px;
-        .fa-solid{
-            color: #2B7551;
-            }
 
- }
-    
-    
+        /* Icono */
+        .fa-solid {
+            color: #2B7551;
+        }
+    }
 }

@@ -1,165 +1,171 @@
+/* Definición de variables */
 color1 = #2B7551;
 
+/* Estilos generales del cuerpo */
+body {
+    background-color: #f9f9f9; /* Color de fondo */
+    font-size: 14px; /* Tamaño de fuente */
+    font-family: 'Roboto', sans-serif; /* Fuente de texto */
+}
 
- body{
-    background-color #f9f9f9
-    font-size 14px
-    font-family: 'Roboto', sans-serif;
-    .nav{
-        background-color #fff
-        border-bottom 2px solid
-    .navbar-brand {
-        margin-right: auto;
-        margin-left: auto;
-        display: table;
-    }
-        
-    @media (min-width: 768px) {
-        .ml-auto, .mx-auto {
-            margin-left: auto !important;
-        }
+/* Estilos para la barra de navegación */
+.nav {
+    background-color: #fff; /* Color de fondo */
+    border-bottom: 2px solid; /* Borde inferior */
+}
 
-        .mr-auto, .mx-auto {
-            margin-right: auto !important;
-        }
-    }
-        
-    }
+/* Estilos para el logotipo de la barra de navegación */
+.navbar-brand {
+    margin-right: auto; /* Margen derecho automático */
+    margin-left: auto; /* Margen izquierdo automático */
+    display: table; /* Mostrar como tabla */
+}
 
-.product-list{
-    display: block;
-    overflow: hidden;
-    margin: 32px;
-    padding: 0px;
-    width: 100%;
-    .white-panel{
-        display: inline-flex;
-        float: left;
-        width: 24%;
-        }
+/* Estilos para la alineación automática en la barra de navegación */
+@media (min-width: 768px) {
+    .ml-auto, .mx-auto {
+        margin-left: auto !important; /* Margen izquierdo automático */
     }
 
- }
-/* Estilos para el footer */
+    .mr-auto, .mx-auto {
+        margin-right: auto !important; /* Margen derecho automático */
+    }
+}
 
+/* Estilos para la lista de productos */
+.product-list {
+    display: block; /* Mostrar como bloque */
+    overflow: hidden; /* Ocultar desbordamiento */
+    margin: 32px; /* Margen */
+    padding: 0px; /* Relleno */
+    width: 100%; /* Ancho completo */
+}
 
+/* Estilos para el panel blanco */
+.white-panel {
+    display: inline-flex; /* Mostrar como flexbox en línea */
+    float: left; /* Flotar a la izquierda */
+    width: 24%; /* Ancho */
+}
+
+/* Estilos para el panel */
 .panel {
-    display: flex;
-    align-items: center;
+    display: flex; /* Mostrar como flexbox */
+    align-items: center; /* Alinear elementos verticalmente */
 }
 
+/* Estilos para la sección del pie de página */
 .section-footer {
-    list-style-type: none;
-    padding: 10px;
-    margin: 0;
+    list-style-type: none; /* Eliminar los marcadores de lista */
+    padding: 10px; /* Relleno */
+    margin: 0; /* Margen */
 }
 
+/* Estilos para los elementos de la sección del pie de página */
 .section-footer li {
-    display: inline-block;
-    margin-right: 20px;
+    display: inline-block; /* Mostrar como bloque en línea */
+    margin-right: 20px; /* Margen derecho */
 }
+
 /* Cambiar el color de los enlaces a negro */
 .MenuFooter__FontSize {
-    color: black;
+    color: black; /* Color de texto */
 }
 
-.NewFooter__Brand-Wrapper {
-    
-    display: flex;
-    align-items: center;
-    
-}
-
-.NewFooter__Brand-Heading {
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-//SEARCH
+/* Estilos para el contenedor de búsqueda */
 .search-container {
-  display: flex;
-  justify-content: flex-end; /* Alinea los elementos a la derecha */
+    display: flex; /* Mostrar como flexbox */
+    justify-content: flex-end; /* Justificar contenido a la derecha */
 }
+
+/* Estilos para el formulario de búsqueda */
 .search-form {
-  display: flex;
-  align-items: center;
+    display: flex; /* Mostrar como flexbox */
+    align-items: center; /* Alinear elementos verticalmente */
 }
 
+/* Estilos para el campo de entrada de búsqueda */
 .search-input {
-  width: 200px; /* Ajusta el ancho según sea necesario */
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  margin-right: 5px; /* Espacio entre el input y el botón */
+    width: 200px; /* Ancho */
+    padding: 8px; /* Relleno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    outline: none; /* Sin contorno */
+    margin-right: 5px; /* Margen derecho */
 }
 
+/* Estilos para el botón de búsqueda */
 .search-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+    background-color: transparent; /* Color de fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero */
 }
 
+/* Estilos para el icono de búsqueda */
 .search-button i {
-  color: #333; /* Color del icono de búsqueda */
-  font-size: 16px; /* Tamaño del icono de búsqueda */
+    color: #333; /* Color del ícono de búsqueda */
+    font-size: 16px; /* Tamaño del ícono de búsqueda */
 }
 
+/* Estilos al pasar el mouse sobre el ícono de búsqueda */
 .search-button:hover i {
-  color: #555; /* Color del icono de búsqueda al pasar el mouse */
+    color: #555; /* Color del ícono de búsqueda al pasar el mouse */
 }
 
-
-//PRODUCTS
+/* Estilos para la lista de productos */
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px; /* Espacio entre las columnas */
+    display: grid; /* Mostrar como cuadrícula */
+    grid-template-columns: repeat(4, 1fr); /* Columnas de la cuadrícula */
+    gap: 20px; /* Espacio entre las columnas */
 }
 
+/* Estilos para el panel blanco */
 .white-panel {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+    background-color: white; /* Color de fondo */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    padding: 10px; /* Relleno */
 }
 
+/* Estilos para los márgenes inferiores */
 .Mjgb {
-  margin-bottom: 20px;
+    margin-bottom: 20px; /* Margen inferior */
 }
 
+/* Estilos para el cuerpo del panel */
 .panel-body {
-  text-align: center;
+    text-align: center; /* Alinear texto al centro */
 }
 
+/* Estilos para el encabezado del panel */
 .panel-heading {
-  text-align: center;
-  margin-bottom: 10px;
+    text-align: center; /* Alinear texto al centro */
+    margin-bottom: 10px; /* Margen inferior */
 }
 
+/* Estilos para las imágenes dentro del cuerpo del panel */
 .panel-body img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%; /* Ancho máximo */
+    height: auto; /* Altura automática */
 }
 
-
-
-
-
+/* Estilos para el botón de agregar al carrito */
 .btn-add-to-cart {
-    color: #2B7551; 
+    color: #2B7551; /* Color de texto */
 }
 
+/* Estilos para el formulario de tarjeta */
 .card-form {
-      margin-top: 16px;
-
-        width: 100%; 
-        height: 500px; 
-        border: 1px solid #ccc; 
-        padding: 20px; 
-        box-sizing: border-box; 
-        overflow-y: auto; 
+    margin-top: 16px; /* Margen superior */
+    width: 100%; /* Ancho completo */
+    height: 500px; /* Altura */
+    border: 1px solid #ccc; /* Borde */
+    padding: 20px; /* Relleno */
+    box-sizing: border-box; /* Incluir borde y relleno en el tamaño */
+    overflow-y: auto; /* Desplazamiento vertical si el contenido excede la altura */
 }
-.mtop16{
-    margin-top: 16px;
-    }
+
+/* Estilos para el margen superior */
+.mtop16 {
+    margin-top: 16px; /* Margen superior */
+}

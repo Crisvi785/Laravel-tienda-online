@@ -1,77 +1,82 @@
-   body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-
-    .main {
-        width: 250px;
-        background-color: #748e81;
-        height: 100vh; /* Ocupa toda la altura disponible */
-        position: fixed; /* Permanece fijo en la pantalla */
-        top: 0;
-        left: 0;
-        overflow-x: hidden; /* Oculta el scroll horizontal si es necesario */
-    }
-
-    .main header {
-        padding: 10px;
-        background-color: #2B7551;
-        color: #000000;
-        text-align: center;
-    }
-
-    .main ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .main ul li {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .main ul li a {
-        text-decoration: none;
-        color: #ffffff;
-    }
-
-    .main ul li a:hover {
-        background-color: #ddd;
-    }
-
-    .container {
-        justify-content: center;
-        margin-left: 250px; /* Ajusta el contenido para que no quede debajo de la barra lateral */
-        padding: 20px;
-    }
-
-    .orders{
-        justify-content: center;
-        margin-left: 20%; /* Ajusta el contenido para que no quede debajo de la barra lateral */
-        padding: 10px;
-    }
-      
-
-  .container p {
-    font-size: 16px;
-    margin-bottom: 20px;
+/* Resetear estilos del cuerpo */
+body {
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+    font-family: Arial, sans-serif; /* Fuente de texto predeterminada */
 }
 
+/* Estilos para la barra lateral */
+.main {
+    width: 250px; /* Ancho de la barra lateral */
+    background-color: #748e81; /* Color de fondo de la barra lateral */
+    height: 100vh; /* Ocupa toda la altura disponible */
+    position: fixed; /* Permanece fijo en la pantalla */
+    top: 0; /* Se coloca en la parte superior */
+    left: 0; /* Se coloca en la parte izquierda */
+    overflow-x: hidden; /* Oculta el scroll horizontal si es necesario */
+}
+
+/* Estilos para el encabezado de la barra lateral */
+.main header {
+    padding: 10px; /* Relleno del encabezado */
+    background-color: #2B7551; /* Color de fondo del encabezado */
+    color: #000000; /* Color del texto del encabezado */
+    text-align: center; /* Alineación del texto al centro */
+}
+
+/* Estilos para la lista dentro de la barra lateral */
+.main ul {
+    list-style-type: none; /* Elimina los marcadores de lista */
+    padding: 0; /* Elimina el relleno de la lista */
+}
+
+/* Estilos para los elementos de la lista dentro de la barra lateral */
+.main ul li {
+    padding: 10px; /* Relleno de los elementos de lista */
+    border-bottom: 1px solid #ccc; /* Borde inferior de cada elemento */
+}
+
+/* Estilos para los enlaces dentro de los elementos de lista */
+.main ul li a {
+    text-decoration: none; /* Elimina la subrayado de los enlaces */
+    color: #ffffff; /* Color del texto de los enlaces */
+}
+
+/* Estilos al pasar el mouse sobre los enlaces */
+.main ul li a:hover {
+    background-color: #ddd; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el contenido principal */
+.container {
+    justify-content: center; /* Centra horizontalmente el contenido */
+    margin-left: 250px; /* Ajusta el margen izquierdo para evitar la superposición con la barra lateral */
+    padding: 20px; /* Relleno del contenido */
+}
+
+/* Estilos para los párrafos dentro del contenedor */
+.container p {
+    font-size: 16px; /* Tamaño de fuente */
+    margin-bottom: 20px; /* Espacio entre párrafos */
+}
+
+/* Estilos para los enlaces dentro del contenedor */
 .container a {
-    text-decoration: none;
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
 }
 
+/* Estilos para los botones dentro del contenedor */
 .container button {
-    padding: 10px 20px;
-    background-color: #2B7551;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 10px 20px; /* Relleno del botón */
+    background-color: #2B7551; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 5px; /* Borde redondeado del botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
 
+/* Estilos al pasar el mouse sobre los botones */
 .container button:hover {
-    background-color: #1E5236;
+    background-color: #1E5236; /* Cambia el color de fondo al pasar el mouse */
 }
